@@ -1,9 +1,14 @@
 import axios from "axios";
 
-const url = "https://post-message-project.herokuapp.com/posts";
+const API = axios.create({ baseURL: 'http://localhost:5000' })
 
-export const fetchPosts = () => axios.get(url);
-export const createPost = (newPost) => axios.post(url, newPost);
-export const updatePost = (id, post) => axios.patch(`${url}/${id}`, post)
-export const deletePost = (id) => axios.delete(`${url}/${id}`)
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`)
+// const url = "https://post-message-project.herokuapp.com/posts";
+
+export const fetchPosts = () => API.get('/posts');
+export const createPost = (newPost) => API.post('/posts', newPost);
+export const updatePost = (id, post) => API.patch(`/posts/${id}`, post)
+export const deletePost = (id) => API.delete(`/posts/${id}`)
+export const likePost = (id) => API.patch(`/posts/${id}/likePost`)
+
+export const signin = (formData) => API.post('/users/signin', formData)
+export const signup = (formData) => API.post('/users/signup', formData)
