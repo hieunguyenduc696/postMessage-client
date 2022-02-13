@@ -11,7 +11,7 @@ API.interceptors.request.use(req => {
 })
 // const url = "https://post-message-project.herokuapp.com/posts";
 
-export const fetchPosts = () => API.get('/posts');
+export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 export const fetchPostsBySearch = (searhQuery) => API.get(`/posts/search?searchQuery=${searhQuery.search || 'none'}&tags=${searhQuery.tags}`)
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, post) => API.patch(`/posts/${id}`, post)
