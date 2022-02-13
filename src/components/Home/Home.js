@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux";
 import { Container, Grid, Grow, Paper, AppBar, TextField, Button } from "@material-ui/core";
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import ChipInput from 'material-ui-chip-input';
 
 import { getPosts, getPostsBySearch } from "../../actions/posts";
@@ -11,17 +11,17 @@ import Form from '../Form/Form';
 import Pagination from '../Pagination';
 import useStyles from './styles'
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search)
-}
+// function useQuery() {
+//   return new URLSearchParams(useLocation().search)
+// }
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null)
   const dispatch = useDispatch();
-  const query = useQuery();
+  // const query = useQuery();
   const history = useHistory();
-  const page = query.get('page') || 1;
-  const searchQuery = query.get('searchQuery')
+  // const page = query.get('page') || 1;
+  // const searchQuery = query.get('searchQuery')
   const classes = useStyles();
   const [search, setSearch] = useState('')
   const [tags, setTags] = useState([])
