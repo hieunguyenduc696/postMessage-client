@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
 import { Container, Grid, Grow, Paper, AppBar, TextField, Button } from "@material-ui/core";
 import { useHistory, useLocation } from 'react-router-dom'
 import ChipInput from 'material-ui-chip-input';
 
-import { getPosts, getPostsBySearch } from "../../actions/posts";
+import { getPostsBySearch } from "../../actions/posts";
 
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';

@@ -1,4 +1,4 @@
-import { FETCH_ALL, FETCH_POST, FETCH_BY_POST, UPDATE, CREATE, DELETE, START_LOADING, END_LOADING } from "../constant/actionTypes";
+import { FETCH_ALL, FETCH_POST, FETCH_BY_POST, UPDATE, CREATE, DELETE, START_LOADING, END_LOADING, COMMENT } from "../constant/actionTypes";
 
 const posts = (posts = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
@@ -23,6 +23,8 @@ const posts = (posts = { isLoading: true, posts: [] }, action) => {
       return { ...posts, posts: posts.posts.map((post) => post._id === action.payload._id ? action.payload : post ) };
     case DELETE:
       return { ...posts, posts: posts.posts.filter((post) => post._id !== action.payload) };
+    case COMMENT:
+      return { ...posts, posts: posts.posts.map((post) => post._id === action.payload._id ? action.payload : post ) };  
     default:
       return posts;
   }
