@@ -1,11 +1,13 @@
-import { FETCH_ALL, FETCH_BY_POST, UPDATE, CREATE, DELETE } from "../constant/actionTypes";
+import { FETCH_ALL, FETCH_BY_POST, UPDATE, CREATE, DELETE, START_LOADING, END_LOADING } from "../constant/actionTypes";
 
-const posts = (posts = [], action) => {
+const posts = (posts = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
+    case START_LOADING:
+      return { ...posts, isLoading: true };
+    case END_LOADING:
+      return { ...posts, isLoading: false };
     case UPDATE:
-      return posts.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
+      return { ...posts, posts: posts.posts.map((post) => post._id === action.payload._id ? action.payload : post ) };
     case FETCH_ALL:
       return {
         ...posts,
@@ -14,14 +16,11 @@ const posts = (posts = [], action) => {
         numberOfPages: action.payload.numberOfPages,
       };
     case FETCH_BY_POST:
-      return {
-        ...posts,
-        posts: action.payload,
-      };
+      return { ...posts, posts: action.payload }
     case CREATE:
-      return [...posts, action.payload];
+      return { ...posts, posts: [...posts, action.payload] };
     case DELETE:
-      return posts.filter((post) => post._id !== action.payload);
+      return { ...posts, posts: posts.posts.filter((post) => post._id !== action.payload) };
     default:
       return posts;
   }
